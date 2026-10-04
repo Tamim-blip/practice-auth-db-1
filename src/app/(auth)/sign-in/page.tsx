@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import {Eye, EyeSlash} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, InputGroup, Label, TextField} from "@heroui/react";
 import { signIn } from '@/lib/auth-client';
+import Link from 'next/link';
 
 
 const SignInPage = () => {
@@ -30,6 +31,13 @@ const SignInPage = () => {
 
     console.log(resData,error)
   };
+
+  const HandleSignIn = async() =>{
+
+    const data = await signIn.social({
+      provider : "google"
+    })
+  }
 
 
 
@@ -136,6 +144,10 @@ const SignInPage = () => {
         </Button>
       </div>
     </Form>
+    <p className='mt-4' >Forgot password ? <Link className='text-blue-800 underline' href= '/forgot-password'>Click here</Link> </p>
+
+    <p>or</p>
+    <Button onClick={HandleSignIn}>Sign in with google</Button>
             
         </div>
     );

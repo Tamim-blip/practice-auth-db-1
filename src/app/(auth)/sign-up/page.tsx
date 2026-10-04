@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import {Eye, EyeSlash} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, InputGroup, Label, TextField} from "@heroui/react";
-import { signUp } from '@/lib/auth-client';
+import { signIn, signUp } from '@/lib/auth-client';
 
 
 const SignUpPage = () => {
@@ -29,6 +29,13 @@ const SignUpPage = () => {
 
     console.log(resData,error)
   };
+
+   const HandleGoogleSignUp = async() => {
+
+      const data = await signIn.social({
+        provider : "google"
+      })
+    }
 
 
 
@@ -135,6 +142,8 @@ const SignUpPage = () => {
         </Button>
       </div>
     </Form>
+    <p>or</p>
+    <Button onClick={HandleGoogleSignUp}>Sign up with google</Button>
             
         </div>
     );
